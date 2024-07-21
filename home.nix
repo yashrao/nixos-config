@@ -80,6 +80,12 @@
   home.packages = with pkgs; [
     telegram-desktop
     discord
+    libreoffice
+    thunderbird
+    # Transmission is broken rn wait a few days to try again (07-13)
+    transmission_4-qt
+    # Broken - supposedly related to plasma6
+    vivaldi 
 
     jetbrains-mono
     nerdfonts
@@ -97,6 +103,20 @@
     zig
     zls
   ];
+
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
+    extraConfig = ''
+      set -g escape-time 1
+      set -g mouse on
+      set -g mode-keys vi
+      set-option -g history-limit 5000
+      bind -r "<" swap-window -d -t -1
+      bind -r ">" swap-window -d -t +1
+      bind c new-window -c "#{pane_current_path}"
+    '';
+  };
 
   programs.bash = {
     enable = true;
@@ -165,6 +185,7 @@
       nimbus-theme
       zenburn-theme
       modus-themes
+      catppuccin-theme
       doom-themes
       evil
       lsp-ui
@@ -253,7 +274,8 @@
       (global-hl-line-mode t)
       (set-face-attribute 'default nil :font "JetBrains Mono-12")
       (set-frame-font "JetBrains Mono-12" nil t)
-      (load-theme 'nimbus t)
+      ;; (load-theme 'catppuccin t)
+      (load-theme 'modus-vivendi t)
       ;; Spaces > tabs
       (setq-default indent-tabs-mode nil)
       (setq-default tab-width 4)

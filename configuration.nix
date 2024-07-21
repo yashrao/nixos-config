@@ -56,6 +56,9 @@
   services.desktopManager.plasma6.enable = true;
   programs.partition-manager.enable = true;
 
+  # Enable Gnome for funsies
+  services.xserver.deskopManager.gnome.enable = true;
+
   programs.steam.enable = true;
   programs.ssh.startAgent = true;
 
@@ -70,6 +73,8 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
