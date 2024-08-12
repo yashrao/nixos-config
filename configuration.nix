@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
@@ -57,7 +57,8 @@
   programs.partition-manager.enable = true;
 
   # Enable Gnome for funsies
-  services.xserver.deskopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  programs.ssh.askPassword = lib.mkForce "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
 
   programs.steam.enable = true;
   programs.ssh.startAgent = true;

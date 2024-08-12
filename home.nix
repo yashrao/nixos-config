@@ -84,8 +84,10 @@
     thunderbird
     # Transmission is broken rn wait a few days to try again (07-13)
     transmission_4-qt
-    # Broken - supposedly related to plasma6
     vivaldi 
+    pass
+    gnupg 
+    slack
 
     jetbrains-mono
     nerdfonts
@@ -95,6 +97,9 @@
     btop
     vscode
     typescript
+    gnome-tweaks
+    flameshot
+    vlc
 
     # Dev
     clang
@@ -122,6 +127,7 @@
     enable = true;
     bashrcExtra = ''
       eval "$(direnv hook bash)"
+      export PATH="$PATH:$HOME/go/bin"
     '';
   };
 
@@ -185,8 +191,10 @@
       nimbus-theme
       zenburn-theme
       modus-themes
-      catppuccin-theme
       doom-themes
+      ef-themes
+      almost-mono-themes
+
       evil
       lsp-ui
       use-package
@@ -204,6 +212,7 @@
       zig-mode
       go-mode
       ccls
+      jtsx
       # Solidity
       solidity-mode
       company-solidity
@@ -267,6 +276,14 @@
             cursor-type 'bar)
       (evil-set-initial-state 'Custom-mode 'normal)
       (add-hook 'after-init-hook 'global-company-mode)
+      ;; Add spaces instead of tabs, overriding major mode settings
+      ;; not sure it really works
+      (add-hook 'after-change-major-mode-hook 
+          '(lambda () 
+             (setq-default indent-tabs-mode nil)
+             (setq c-basic-indent 4)
+             (setq tab-width 4)))
+
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
       (menu-bar-mode -1)
@@ -274,8 +291,9 @@
       (global-hl-line-mode t)
       (set-face-attribute 'default nil :font "JetBrains Mono-12")
       (set-frame-font "JetBrains Mono-12" nil t)
-      ;; (load-theme 'catppuccin t)
-      (load-theme 'modus-vivendi t)
+      ;;(load-theme 'modus-vivendi t)
+      ;;(load-theme 'ef-bio t)
+      (load-theme 'almost-mono-black t)
       ;; Spaces > tabs
       (setq-default indent-tabs-mode nil)
       (setq-default tab-width 4)
